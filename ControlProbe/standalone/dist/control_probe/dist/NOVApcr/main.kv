@@ -1,0 +1,62 @@
+#:kivy 1.0.9
+
+<RootWidget>:
+    background_color: (0, 0.52, 0.81, 1)
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Control Probe"
+            font_size: 40
+        BoxLayout:
+            size_hint: (1, 0.5)
+            orientation: "horizontal"
+            Label:
+                text: "Trial Name:"
+            TextInput:
+                id: name_input
+                multiline: False
+                text: "Test"
+        BoxLayout:
+            id: com_box
+            size_hint: (1, 0.5)
+            orientation: "horizontal"
+            Label:
+                text: "PCR port:"
+            TextInput:
+                id: pcr_port
+                multiline: False
+                text: "COM3"
+            Label:
+                text: "Control port:"
+            TextInput:
+                id: control_port
+                multiline: False
+                text: "COM16"
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: start_button
+                font_size: 20
+                text: "Start"
+                on_release: root.start_button()
+            Button:
+                id: stop_button
+                font_size: 20
+                text: "Stop"
+                on_release: root.stop_button()
+        ScrollView:
+            id: scroller
+            size_hint: (1, 2)
+            do_scroll_x: False
+            do_scroll_y: True
+            TextInput:
+                id: console
+                size_hint: (1, None)
+                disabled: True
+                height: max((len(self._lines) + 1) * self.line_height, scroller.height)

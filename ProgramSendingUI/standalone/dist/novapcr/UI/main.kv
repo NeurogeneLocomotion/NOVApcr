@@ -1,0 +1,105 @@
+#:kivy 1.0.9
+
+# Main widget Interface
+<RootWidget>:
+    background_color: (0, 0.52, 0.81, 1)
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    orientation: "vertical"
+    BoxLayout:
+        id: name_n_title
+        size_hint: (1, 0.3)
+        orientation: "vertical"
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                orientation: "horizontal"
+            Label:
+                font_size: 50
+                text: "NOVApcr"
+            Label:
+                font_size: 15
+                text: "CEDOC NOVA Medical School"
+            BoxLayout:
+                orientation: "horizontal"
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: (1, 0.25)
+            BoxLayout:
+                orientation: "horizontal"
+            Label:
+                text: "Program Name:"
+            TextInput:
+                size_hint: (2, 1)
+                id: program_name
+                multiline: False
+                disabled: True
+            BoxLayout:
+                orietation: "vertical"
+        BoxLayout:
+            size_hint: (1, 0.2)
+        BoxLayout:
+            id: com_box
+            size_hint: (1, 0.25)
+            orientation: "horizontal"
+            BoxLayout:
+                orientation: "horizontal"
+            Label:
+                text: "COM Port:"
+            TextInput:
+                size_hint: (2, 1)
+                id: pcr_port
+                multiline: False
+                text: "COM0"
+            BoxLayout:
+                orientation: "horizontal"
+        BoxLayout:
+            size_hint: (1, 0.4)
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                orientation: "horizontal"
+                BoxLayout:
+                    size_hint: (0.6, None)
+                Button:
+                    id: load_button
+                    font_size: 30
+                    text: "Load"
+                    on_release: root.load_button()
+                BoxLayout:
+                    size_hint: (0.4, None)
+                Button:
+                    id: send_button
+                    font_size: 30
+                    text: "Send"
+                    on_release: root.send_button()
+                BoxLayout:
+                    size_hint: (0.6, None)
+            BoxLayout:
+                size_hint: (1, 0.4)
+        TextInput:
+            id: console
+            disabled: True
+
+# Window used for file choosing
+<LoadFile>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: "./programs"
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.selection)

@@ -1,0 +1,10 @@
+1 STEP 50 C 1200 s
+2 STEP 95 C 180 s
+3 STEP 95 C 5 s
+4 STEP 72 C 60 s
+5 GOTO 3 line 20 cycles
+6 STEP 95 C 5 s
+7 STEP 63 C 30 s
+8 STEP 72 C 30 s
+9 GOTO 6 line 40 cycles
+10 END 15 C
